@@ -61,28 +61,22 @@
     "product_slider_AR7RCm": {
       "type": "product-slider",
       "blocks": {
-        "product_zM7Yaz": {
-          "type": "product",
-          "settings": {
-            "product": "the-collection-snowboard-oxygen"
-          }
-        },
         "product_9TaHA3": {
           "type": "product",
           "settings": {
             "product": "the-compare-at-price-snowboard"
           }
         },
-        "product_EzaNDw": {
+        "product_HfQdUh": {
           "type": "product",
           "settings": {
-            "product": "the-complete-snowboard"
+            "product": "the-collection-snowboard-liquid"
           }
         },
-        "product_YWPyTg": {
+        "product_zM7Yaz": {
           "type": "product",
           "settings": {
-            "product": "the-inventory-not-tracked-snowboard"
+            "product": "the-collection-snowboard-oxygen"
           }
         },
         "product_twAz3J": {
@@ -95,6 +89,18 @@
           "type": "product",
           "settings": {
             "product": "the-out-of-stock-snowboard"
+          }
+        },
+        "product_EzaNDw": {
+          "type": "product",
+          "settings": {
+            "product": "the-complete-snowboard"
+          }
+        },
+        "product_YWPyTg": {
+          "type": "product",
+          "settings": {
+            "product": "the-inventory-not-tracked-snowboard"
           }
         },
         "product_Thqanq": {
@@ -123,12 +129,13 @@
         }
       },
       "block_order": [
-        "product_zM7Yaz",
         "product_9TaHA3",
-        "product_EzaNDw",
-        "product_YWPyTg",
+        "product_HfQdUh",
+        "product_zM7Yaz",
         "product_twAz3J",
         "product_kU3bi3",
+        "product_EzaNDw",
+        "product_YWPyTg",
         "product_Thqanq",
         "product_rBHYRj",
         "product_VRfrAW",
@@ -144,186 +151,10 @@
         "padding_top_mobile": 36,
         "padding_bottom_mobile": 36
       }
-    },
-    "product_slider_BQBYRL": {
-      "type": "product-slider",
-      "blocks": {
-        "product_KbAemw": {
-          "type": "product",
-          "settings": {
-            "product": "the-3p-fulfilled-snowboard"
-          }
-        },
-        "product_VnA3cV": {
-          "type": "product",
-          "settings": {
-            "product": "the-collection-snowboard-oxygen"
-          }
-        },
-        "product_z8pdKW": {
-          "type": "product",
-          "settings": {
-            "product": "the-multi-location-snowboard"
-          }
-        },
-        "product_WHj9q9": {
-          "type": "product",
-          "settings": {
-            "product": "the-complete-snowboard"
-          }
-        },
-        "product_bd7UYg": {
-          "type": "product",
-          "settings": {
-            "product": "the-inventory-not-tracked-snowboard"
-          }
-        },
-        "product_U8bLNJ": {
-          "type": "product",
-          "settings": {
-            "product": "the-out-of-stock-snowboard"
-          }
-        },
-        "product_gdiPHa": {
-          "type": "product",
-          "settings": {
-            "product": "the-compare-at-price-snowboard"
-          }
-        },
-        "product_6UNxLG": {
-          "type": "product",
-          "settings": {
-            "product": "the-multi-managed-snowboard"
-          }
-        },
-        "product_fygqkX": {
-          "type": "product",
-          "settings": {
-            "product": "the-videographer-snowboard"
-          }
-        },
-        "product_ppner4": {
-          "type": "product",
-          "settings": {
-            "product": "the-out-of-stock-snowboard"
-          }
-        }
-      },
-      "block_order": [
-        "product_KbAemw",
-        "product_VnA3cV",
-        "product_z8pdKW",
-        "product_WHj9q9",
-        "product_bd7UYg",
-        "product_U8bLNJ",
-        "product_gdiPHa",
-        "product_6UNxLG",
-        "product_fygqkX",
-        "product_ppner4"
-      ],
-      "name": "t:sections.product_slider.presets.name",
-      "settings": {
-        "heading": "Featured",
-        "link_label": "Shop All Featured",
-        "link_url": "shopify://collections",
-        "padding_top": 80,
-        "padding_bottom": 100,
-        "padding_top_mobile": 36,
-        "padding_bottom_mobile": 36
-      }
-    },
-    "product_slider_VLFhyH": {
-      "type": "product-slider",
-      "blocks": {
-        "product_KL966x": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_9kLcVe": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_DwVc49": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_MChDJp": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_BYQCzR": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_RfEKWx": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_LxtAUb": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_tALiJN": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_ngK7D8": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_UdCyJd": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_KL966x",
-        "product_9kLcVe",
-        "product_DwVc49",
-        "product_MChDJp",
-        "product_BYQCzR",
-        "product_RfEKWx",
-        "product_LxtAUb",
-        "product_tALiJN",
-        "product_ngK7D8",
-        "product_UdCyJd"
-      ],
-      "name": "t:sections.product_slider.presets.name",
-      "settings": {
-        "heading": "Best Sellers",
-        "link_label": "Shop All Best Sellers",
-        "link_url": "",
-        "padding_top": 80,
-        "padding_bottom": 100,
-        "padding_top_mobile": 36,
-        "padding_bottom_mobile": 36
-      }
     }
   },
   "order": [
     "6a3bb789-ce10-45f5-ae67-e2063ef8c76b",
-    "product_slider_AR7RCm",
-    "product_slider_BQBYRL",
-    "product_slider_VLFhyH"
+    "product_slider_AR7RCm"
   ]
 }
