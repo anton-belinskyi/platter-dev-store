@@ -177,7 +177,13 @@
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
       "include_taxes": "Tax included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "save_percent": "Save {{ percent }}%",
+      "rating": "Rated {{ rating }} out of 5",
+      "reviews_count": {
+        "one": "{{ count }} Review",
+        "other": "{{ count }} Reviews"
+      }
     },
     "modal": {
       "label": "Media gallery"
@@ -334,6 +340,10 @@
     },
     "page": {
       "title": "Page title"
+    },
+    "product_slider": {
+      "show_more": "Show More",
+      "show_less": "Show Less"
     }
   },
   "localization": {
