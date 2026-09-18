@@ -1,7 +1,8 @@
 if (!customElements.get('product-reveal')) {
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const HIDDEN_FROM = 4;
-  const DURATION = 350;
+  const EXPAND_DURATION = 850;
+  const COLLAPSE_DURATION = 350;
   const DECODE_TIMEOUT = 400;
 
   class ProductReveal extends HTMLElement {
@@ -117,7 +118,7 @@ if (!customElements.get('product-reveal')) {
       this.animation?.cancel();
 
 
-      const duration = reducedMotionQuery.matches ? 0 : DURATION;
+      const duration = reducedMotionQuery.matches ? 0 : (expand ? EXPAND_DURATION : COLLAPSE_DURATION);
       const { from, to } = this.measure(expand);
 
       if (!expand) this.scrollToTop(duration);
