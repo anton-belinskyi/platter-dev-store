@@ -34,6 +34,7 @@
       tabindex="-1"
       aria-hidden="true"
       draggable="false"
+      data-media
     >
       {%- if primary_image -%}
         {{
@@ -54,27 +55,18 @@
       {%- endif -%}
 
       {%- if hover_image -%}
-        <picture>
-          <source
-            media="(hover: hover)"
-            srcset="
-              {{ hover_image | image_url: width: 320, height: 320, crop: 'center' }} 320w,
-              {{ hover_image | image_url: width: 480, height: 480, crop: 'center' }} 480w,
-              {{ hover_image | image_url: width: 720, height: 720, crop: 'center' }} 720w
-            "
-            sizes="{{ sizes }}"
-          >
-          <img
-            class="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 group-hover/media:opacity-100"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            width="720"
-            height="720"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            draggable="false"
-          >
-        </picture>
+        {{
+          hover_image
+          | image_url: width: 720, height: 720, crop: 'center'
+          | image_tag:
+            widths: '320, 480, 720',
+            sizes: sizes,
+            loading: 'lazy',
+            decoding: 'async',
+            draggable: 'false',
+            alt: '',
+            class: 'absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 group-hover/media:opacity-100 group-data-media-active/media:opacity-100'
+        }}
       {%- endif -%}
 
       {%- if badges.size > 0 or sale_percent > 0 -%}

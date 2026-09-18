@@ -3,6 +3,8 @@
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
   const easeOutCubic = (progress) => 1 - (1 - progress) ** 3;
+  const HOLD_DELAY = 150;
+  const HOLD_MOVE_TOLERANCE = 8;
 
   class ProductSlider extends HTMLElement {
     connectedCallback() {
@@ -16,6 +18,7 @@
       this.track.addEventListener('pointerdown', (event) => this.startTrackDrag(event));
       this.bar.addEventListener('pointerdown', (event) => this.startBarDrag(event));
       this.track.addEventListener('wheel', () => this.stopSettle(), { passive: true });
+      this.track.addEventListener('pointerdown', (event) => this.startMediaHold(event));
       this.addEventListener('shopify:block:select', (event) => this.scrollToItem(event.target));
 
       this.resizeObserver = new ResizeObserver(this.update);
@@ -133,6 +136,38 @@
 
         this.settle();
         this.track.addEventListener('click', (clickEvent) => clickEvent.preventDefault(), { capture: true, once: true });
+      };
+
+      window.addEventListener('pointermove', move, { signal });
+      window.addEventListener('pointerup', end, { signal });
+      window.addEventListener('pointercancel', end, { signal });
+    }
+
+    startMediaHold(event) {
+      if (event.pointerType === 'mouse') return;
+
+      const media = event.target.closest('[data-media]');
+      if (!media) return;
+
+      const controller = new AbortController();
+      const { signal } = controller;
+      let held = false;
+
+      const timer = setTimeout(() => {
+        held = true;
+        media.toggleAttribute('data-media-active', true);
+      }, HOLD_DELAY);
+
+      const end = () => {
+        clearTimeout(timer);
+        controller.abort();
+        media.removeAttribute('data-media-active');
+        if (held) media.addEventListener('click', (clickEvent) => clickEvent.preventDefault(), { capture: true, once: true });
+      };
+
+      const move = (moveEvent) => {
+        const moved = Math.abs(moveEvent.clientX - event.clientX) > HOLD_MOVE_TOLERANCE || Math.abs(moveEvent.clientY - event.clientY) > HOLD_MOVE_TOLERANCE;
+        if (moved) end();
       };
 
       window.addEventListener('pointermove', move, { signal });
