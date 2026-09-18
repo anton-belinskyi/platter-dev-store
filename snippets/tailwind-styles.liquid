@@ -1,0 +1,199 @@
+{% comment %} 
+ Theme sets the root font size to 62.5% (1rem = 10px), so all theme values and the --spacing unit are in px. 
+{% endcomment %}
+
+<style type="text/tailwindcss">
+  @import "tailwindcss/theme";
+  @import "tailwindcss/utilities";
+
+  @theme {
+    --spacing: 4px;
+
+    --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Source Serif Pro", ui-serif, Georgia, serif;
+    --font-display: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+
+    --color-primary: #231f20;
+    --color-secondary: #5c553a;
+    --color-muted: #707070;
+    --color-contrast: #fffffa;
+    --color-sale: #5c7962;
+    --color-placeholder: #f2f2f2;
+
+    --color-star: var(--color-primary);
+    --color-star-empty: #c9c4c5;
+
+    --color-scrollbar-thumb: var(--color-primary);
+    --color-scrollbar-track: #ddd6d7;
+
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-card: 10px;
+
+    --text-sm: 14px;
+    --text-sm--line-height: 20px;
+    --text-base: 16px;
+    --text-base--line-height: 24px;
+
+    --text-heading: 28px;
+    --text-heading--line-height: 35px;
+    --text-heading--letter-spacing: -0.01em;
+    --text-heading-lg: 40px;
+    --text-heading-lg--line-height: 48px;
+    --text-heading-lg--letter-spacing: -0.01em;
+
+    --text-link: 14px;
+    --text-link--line-height: 19.6px;
+    --text-link--letter-spacing: 0.03em;
+
+    --text-button: 16px;
+    --text-button--line-height: 22px;
+    --text-button--letter-spacing: 0.03em;
+
+    --text-card-title: 16px;
+    --text-card-title--line-height: 19.2px;
+    --text-card-title--letter-spacing: 0.03em;
+    --text-card-title-lg: 18px;
+    --text-card-title-lg--line-height: 22px;
+    --text-card-title-lg--letter-spacing: 0.03em;
+
+    --text-rating: 11px;
+    --text-rating--line-height: 17px;
+    --text-rating-lg: 12px;
+    --text-rating-lg--line-height: 18px;
+
+    --text-badge: 8px;
+    --text-badge--line-height: 10px;
+    --text-badge--letter-spacing: 0.04em;
+    --text-badge-lg: 10px;
+    --text-badge-lg--line-height: 12px;
+    --text-badge-lg--letter-spacing: 0.06em;
+  }
+
+  @utility section-inset {
+    --section-inset: 24px;
+    padding-inline: var(--section-inset);
+
+    @variant md {
+      --section-inset: clamp(24px, 6.667vw, 128px);
+    }
+  }
+
+  @utility slider-track {
+    --slides-visible: 2.4;
+    --slide-gap: 24px;
+    display: flex;
+    gap: var(--slide-gap);
+    margin-inline: calc(var(--section-inset) * -1);
+    padding-inline: var(--section-inset);
+    scroll-padding-inline: var(--section-inset);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &[data-dragging] {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      user-select: none;
+    }
+
+    @variant lg {
+      --slides-visible: 3.2;
+    }
+
+    @variant xl {
+      --slides-visible: 4.728;
+    }
+  }
+
+  @utility slider-slide {
+    flex-shrink: 0;
+    width: calc((100vw - var(--section-inset)) / var(--slides-visible) - var(--slide-gap));
+    scroll-snap-align: start;
+  }
+
+  @utility star-rating {
+    --star-size: 9px;
+    --star-gap: 2px;
+    --star-fill: calc(var(--rating, 0) * var(--star-size) + round(down, var(--rating, 0), 1) * var(--star-gap));
+    flex-shrink: 0;
+    width: calc(var(--star-size) * 5 + var(--star-gap) * 4);
+    height: var(--star-size);
+    background: linear-gradient(to right, var(--color-star) var(--star-fill), var(--color-star-empty) var(--star-fill));
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5.55.73a.5.5 0 0 1 .9 0l1.37 2.78 3.06.44a.5.5 0 0 1 .28.86L8.94 6.97l.52 3.05a.5.5 0 0 1-.72.53L6 9.1 3.26 10.55a.5.5 0 0 1-.72-.53l.52-3.05L.84 4.81a.5.5 0 0 1 .28-.86l3.06-.44z'/%3E%3C/svg%3E");
+    mask-size: var(--star-size) var(--star-size);
+    mask-repeat: space;
+
+    @variant md {
+      --star-size: 12px;
+    }
+  }
+
+  @utility section-padding {
+    padding-top: var(--section-padding-top, 36px);
+    padding-bottom: var(--section-padding-bottom, 36px);
+
+    @variant md {
+      padding-top: var(--section-padding-top-md, 80px);
+      padding-bottom: var(--section-padding-bottom-md, 100px);
+    }
+  }
+
+  @utility product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+
+    @variant md {
+      display: flex;
+      grid-template-columns: none;
+    }
+  }
+
+  @utility product-badge {
+    border: 1px solid var(--color-black);
+    border-radius: calc(infinity * 1px);
+    padding: 3px 7px;
+  }
+
+  :where(.product-slider) :is(h2, h3, p, ul, li) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :where(.product-slider) :is(h2, h3) {
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    word-break: normal;
+  }
+
+  :where(.product-slider) :is(a, button) {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  :where(.product-slider) img {
+    display: block;
+    max-width: 100%;
+  }
+
+  product-reveal[data-collapsed] [data-slider-track] > :nth-child(n + 5) {
+    @variant max-md {
+      display: none;
+    }
+  }
+</style>

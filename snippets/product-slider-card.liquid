@@ -1,0 +1,120 @@
+{%- liquid
+  assign product = block.settings.product
+  assign variant = product.selected_or_first_available_variant
+  assign sizes = '(min-width: 1280px) 19vw, (min-width: 1024px) 29vw, (min-width: 768px) 39vw, calc(50vw - 30px)'
+
+  assign loading = 'lazy'
+  assign fetchpriority = 'auto'
+  if index < 4
+    assign loading = 'eager'
+  endif
+  if index == 0
+    assign fetchpriority = 'high'
+  endif
+
+  assign primary_image = product.featured_media.preview_image
+  assign hover_image = block.settings.hover_image
+  if hover_image == blank
+    assign hover_image = product.media[1].preview_image
+  endif
+
+  assign sale_percent = 0
+  if variant.compare_at_price and variant.compare_at_price > variant.price
+    assign sale_percent = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+  endif
+
+  assign badges = product.metafields.custom.product_badges.value
+-%}
+
+<li class="relative md:slider-slide" {{ block.shopify_attributes }}>
+  <article class="flex flex-col gap-3 pb-2 md:gap-4 md:pb-4">
+    <a
+      href="{{ product.url | default: '#' }}"
+      class="group/media relative block aspect-square overflow-hidden rounded-card bg-placeholder"
+      tabindex="-1"
+      aria-hidden="true"
+      draggable="false"
+    >
+      {%- if primary_image -%}
+        {{
+          primary_image
+          | image_url: width: 720, height: 720, crop: 'center'
+          | image_tag:
+            widths: '320, 480, 720',
+            sizes: sizes,
+            loading: loading,
+            fetchpriority: fetchpriority,
+            decoding: 'async',
+            draggable: 'false',
+            alt: product.title,
+            class: 'size-full object-cover'
+        }}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'size-full bg-placeholder' }}
+      {%- endif -%}
+
+      {%- if hover_image -%}
+        <picture>
+          <source
+            media="(hover: hover)"
+            srcset="
+              {{ hover_image | image_url: width: 320, height: 320, crop: 'center' }} 320w,
+              {{ hover_image | image_url: width: 480, height: 480, crop: 'center' }} 480w,
+              {{ hover_image | image_url: width: 720, height: 720, crop: 'center' }} 720w
+            "
+            sizes="{{ sizes }}"
+          >
+          <img
+            class="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 group-hover/media:opacity-100"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            width="720"
+            height="720"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          >
+        </picture>
+      {%- endif -%}
+
+      {%- if badges.size > 0 or sale_percent > 0 -%}
+        <div class="absolute inset-x-1 top-1 flex items-start justify-between gap-1 font-display text-badge uppercase md:top-2 md:right-6.75 md:left-2 md:text-badge-lg">
+          <ul class="flex flex-wrap gap-1">
+            {%- for badge in badges -%}
+              {%- if badge != blank -%}
+                <li class="product-badge bg-white text-black">{{ badge | escape }}</li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+          {%- if sale_percent > 0 -%}
+            <p class="product-badge shrink-0 bg-sale text-contrast ml-auto">
+              {{- 'products.product.save_percent' | t: percent: sale_percent -}}
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </a>
+
+    <div class="flex flex-col gap-2 px-2 md:px-3">
+      <h3 class="font-display text-card-title text-primary uppercase md:text-card-title-lg">
+        <a
+          href="{{- product.url | default: '#' -}}"
+          class="line-clamp-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          draggable="false"
+        >
+          {%- if product -%}
+            {{- product.title | escape -}}
+          {%- else -%}
+            {{- 'onboarding.product_title' | t -}}
+          {%- endif -%}
+        </a>
+      </h3>
+
+      {%- if product -%}
+        {%- render 'star-rating', product: product -%}
+        {%- render 'product-slider-price', product: product, variant: variant -%}
+      {%- endif -%}
+    </div>
+  </article>
+</li>

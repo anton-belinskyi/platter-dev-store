@@ -1,0 +1,16 @@
+{%- liquid
+  assign review_data = product.metafields.judgeme.review_widget_data.value
+  assign review_count = review_data.number_of_reviews | plus: 0 | default: 0
+  assign rating = review_data.average_rating | times: 1.0 | at_least: 0 | at_most: 5 | round: 1 | default: 0
+-%}
+
+<p class="flex items-center gap-1 text-rating text-muted md:text-rating-lg">
+  <span
+    class="star-rating"
+    role="img"
+    aria-label="{{- 'products.product.rating' | t: rating: rating -}}"
+    data-rating="{{ rating }}"
+    style="--rating: {{ rating }}"
+  ></span>
+  <span>{{- 'products.product.reviews_count' | t: count: review_count -}}</span>
+</p>

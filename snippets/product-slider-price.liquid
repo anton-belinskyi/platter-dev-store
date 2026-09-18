@@ -1,0 +1,17 @@
+{%- liquid
+  assign price = variant.price | money
+  if product.price_varies
+    assign price = 'products.product.price.from_price_html' | t: price: price
+  endif
+-%}
+
+{%- if variant.compare_at_price and variant.compare_at_price > variant.price -%}
+  <p class="flex flex-wrap items-baseline gap-x-2 text-base font-medium text-primary">
+    <span class="sr-only">{{- 'products.product.price.sale_price' | t -}}</span>
+    <span>{{- price -}}</span>
+    <span class="sr-only">{{- 'products.product.price.regular_price' | t -}}</span>
+    <s class="text-sm font-normal text-muted">{{- variant.compare_at_price | money -}}</s>
+  </p>
+{%- else -%}
+  <p class="text-base font-medium text-primary">{{- price -}}</p>
+{%- endif -%}

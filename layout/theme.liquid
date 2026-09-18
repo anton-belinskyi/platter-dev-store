@@ -16,6 +16,13 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {% if template == "index" %}
+      {% comment %} !!!FOR SHOWCASE ONLY!!! {% endcomment %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600&family=Source+Serif+Pro:wght@700;900&display=swap">
+    {% endif %}
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
@@ -242,6 +249,17 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+
+    {% if template == "index" %}
+      {% comment %}
+       !!!ONLY FOR SHOWCASE IN HOMEPAGE!!!
+       Connecting tailwind globally will cause issues for pages like PDP and PLP
+       CDN would generate utilities for theme's own grid, hidden and badge classes and break other sections
+      {% endcomment %}
+      {% render 'tailwind-styles' %}
+      <script defer src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    {% endif %}
   </head>
 
   <body class="gradient">

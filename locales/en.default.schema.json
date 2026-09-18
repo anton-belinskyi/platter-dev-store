@@ -3300,6 +3300,43 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "product_slider": {
+      "name": "Product slider",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "link_label": {
+          "label": "Link label"
+        },
+        "link_url": {
+          "label": "Link"
+        },
+        "padding_top_mobile": {
+          "label": "Top padding (mobile)"
+        },
+        "padding_bottom_mobile": {
+          "label": "Bottom padding (mobile)"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Product",
+          "settings": {
+            "product": {
+              "label": "Product"
+            },
+            "hover_image": {
+              "label": "Hover image",
+              "info": "Falls back to the second product image when empty."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Product slider"
+      }
     }
   }
 }
